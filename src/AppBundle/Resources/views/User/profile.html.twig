@@ -1,0 +1,163 @@
+{% extends "AppBundle:Layouts:layout.html.twig" %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{ asset('assets/js/custom/profile.js') }}"></script>
+{% endblock%}
+
+{% block content %}
+    <div class="col-lg-8 box-default profile-box">
+
+        <div class="avatar">
+            {% if user.image == null %}
+                <img src="{{ asset('assets/images/default.png')}}" />
+            {% else %}
+                <img src="{{ asset('uploads/users/'~user.image)}}" />
+            {% endif %}
+        </div>
+
+        <div class="name-surname">
+            <h2>{{user.name}} {{user.surname}}</h2>
+            <div class="clearfix"></div>
+            <span class="nickname">
+                {{user.nick}}
+            </span>
+        </div>
+
+        <div class="bio">
+            {{user.bio}}
+        </div>
+        <div class="clearfix"></div>
+
+        <div id="user_stats">        
+
+            {% set user_stats = user|user_stats %}
+
+            <div class="following-data">
+                <a href="{{ path('user_profile', {'nickname': user.nick}) }}">
+                    <span class="label-stat">
+                        Publicaciones
+                    </span>
+                    <span class="number-stat">
+                        {{user_stats.publications}}
+                    </span>
+                </a>                
+            </div>
+
+            <div class="following-data">
+                <a href="{{ path('following_users', {'nickname': user.nick}) }}">
+                    <span class="label-stat">
+                        Siguiendo
+                    </span>
+                    <span class="number-stat">
+                        {{user_stats.following}}
+                    </span>
+                </a>                
+            </div>
+
+            <div class="following-data">
+                <a href="{{ path('followed_users', {'nickname': user.nick}) }}">
+                    <span class="label-stat">
+                        Seguidores
+                    </span>
+                    <span class="number-stat">
+                        {{user_stats.followers}}
+                    </span>
+                </a>                
+            </div>
+
+            <div class="following-data">
+                <a href="{{ path('user_likes', {'nickname': user.nick}) }}">
+                    <span class="label-stat">
+                        Me Gustas
+                    </span>
+                    <span class="number-stat">
+                        {{user_stats.likes}}
+                    </span>
+                </a>                
+            </div>
+            <div class="clearfix"></div>        
+        </div>
+
+        <div id="user-publications">
+            {% for publication in pagination %}
+                <div class="col-lg-12 publication-item">
+                    <div class="avatar">
+                        {% if publication.user.image == null %}
+                            <img src="{{ asset('assets/images/default.png')}}" />
+                        {% else %}
+                            <img src="{{ asset('uploads/users/'~publication.user.image)}}" />
+                        {% endif %}
+                    </div>
+
+                    <div class="publication-item-content">
+                        <p><a class="pub-name-link" href="{{ path('user_profile', {'nickname': publication.user.nick}) }}">
+                                {{publication.user.name}} {{publication.user.surname}}
+                            </a>
+                            -
+                            {{publication.user.nick}}
+                            -
+                            <span class="pub-date">
+                                {{publication.createdAt|long_time}}
+                            </span>
+                        </p>
+
+                        <p>{{publication.text}}</p>
+
+                        {% if(publication.user.id is defined) and (publication.user.id == app.user.id) %}
+                            <span data-id="{{publication.id}}" class="btn-delete-pub glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        {% endif %}
+
+                        {% if(publication.image is defined) and (publication.image != null) %}
+                            <a href="{{ asset('uploads/publications/archivos/'~publication.image)}}"
+                               class="btn-doc glyphicon glyphicon-save" aria-hidden="true" target="_blank">
+                            </a>
+                        {% endif %}
+
+                        {% if(publication.image is defined) and (publication.image != null) %}
+                            <span class="btn-img glyphicon glyphicon-picture" aria-hidden="true"></span>
+                            <div class="clearfix"></div>
+
+                            <div class="pub-image">
+                                <img src="{{ asset('uploads/publications/archivos/'~publication.image)}}" />
+                            </div>
+                        {% endif %}
+
+                        <div class="pull-right like">
+                            <span data-id="{{publication.id}}"
+                                  class="
+                                  {% if app.user|liked(publication) == true %}
+                                      hidden
+                                  {% endif %}
+                                  btn-like glyphicon glyphicon-heart-empty"
+                                  aria-hidden="true" 
+                                  data-toggle="tooltip"
+                                  data-placement="bottom"
+                                  title="Me Gusta">
+                            </span>
+
+                            <span data-id="{{publication.id}}"
+                                  class="
+                                  {% if app.user|liked(publication) == false %}
+                                      hidden
+                                  {% endif %}
+                                  btn-unlike active glyphicon glyphicon-heart-empty"
+                                  aria-hidden="true" 
+                                  data-toggle="tooltip"
+                                  data-placement="bottom"
+                                  title="Ya no me Gusta">
+                            </span>      
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr/>                                                
+                </div>
+            {% endfor %}
+
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+BackendBundle\Entity\Publication:
+    type: entity
+    table: publications
+    indexes:
+        fk_publications_users:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        text:
+            type: text
+            nullable: true
+            length: 16777215
+            options:
+                fixed: false
+                default: 'NULL'
+        document:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+                default: 'NULL'
+        image:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+        status:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+                default: 'NULL'
+        createdAt:
+            type: datetime
+            nullable: true
+            options:
+                default: 'NULL'
+            column: created_at
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

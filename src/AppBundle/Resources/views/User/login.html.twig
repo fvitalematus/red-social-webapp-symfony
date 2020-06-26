@@ -1,0 +1,24 @@
+{% extends "AppBundle:Layouts:layout.html.twig"%}
+{% block content %}
+  <div class="col-lg-4 box-form">
+        
+        <h2>Identificarse</h2>
+        <hr/>
+        
+        {% if is_granted('ROLE_USER') %}
+            {{ dump(app.user) }}
+        {% endif %}
+        
+        <form action="{{path('login_check')}}" method="POST">
+            <label>Email</label>
+            <input type="email" id="username" name="_username" value="{{ last_username }}" class="form-control" />
+                  
+             <label>Contraseña</label>
+             <input type="password" id="password" name="_password"  class="form-control" />
+                                
+             <input type="submit" value="Entrar" class="btn btn-success" />
+             <input type="hidden" name="_target_path" value="/home" />         
+        </form>
+        
+    </div>
+{% endblock %}

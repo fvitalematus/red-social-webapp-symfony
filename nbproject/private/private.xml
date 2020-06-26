@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/wamp/www/curso-social-network/web/assets/css/styles.css</file>
+            <file>file:/C:/wamp/www/curso-social-network/web/assets/js/custom/common.js</file>
+            <file>file:/C:/wamp/www/curso-social-network/src/AppBundle/Controller/PrivateMessageController.php</file>
+            <file>file:/C:/wamp/www/curso-social-network/src/AppBundle/Resources/config/routing/private_message.yml</file>
+            <file>file:/C:/wamp/www/curso-social-network/src/AppBundle/Resources/views/Layouts/layout.html.twig</file>
+            <file>file:/C:/wamp/www/curso-social-network/src/AppBundle/Resources/views/PrivateMessage/sended.html.twig</file>
+            <file>file:/C:/wamp/www/curso-social-network/src/AppBundle/Resources/views/PrivateMessage/index.html.twig</file>
+        </group>
+    </open-files>
+</project-private>

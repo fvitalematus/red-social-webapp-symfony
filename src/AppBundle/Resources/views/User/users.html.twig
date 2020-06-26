@@ -1,0 +1,77 @@
+{% extends "AppBundle:Layouts:layout.html.twig"%}
+
+{% block javascripts %}
+    {{ parent() }}
+     <script src="{{ asset('assets/js/custom/users.js') }}"></script>
+{% endblock %}
+    
+{% block content %}
+    <div class="container">
+    <div class="col-lg-12 box-default">
+        <h1>Seed's (Gente)</h1>
+        <div class="count">
+            <span class="label label-primary">
+               Total de Personas: {{ pagination.getTotalItemCount }}
+            </span>
+        </div>   
+            
+            <hr/>
+            
+            <div class="box-content box-users">
+                {% for user in pagination %}
+                    <div class="col-lg-12 user-item">
+                        <div class="avatar">
+                            {% if user.image == null %}
+                                <img src="{{ asset('assets/images/default.png')}}" />
+                            {% else %}
+                                <img src="{{ asset('uploads/users/'~user.image)}}" />
+                            {% endif %}
+                        </div>
+                        
+                        <div class="user-item-content">
+                            <p>
+                                <a class="user_link" href="{{ path('user_profile', {'nickname': user.nick}) }}" />
+                                {{user.name}} {{user.surname}}
+                                </a>
+                                - {{user.nick}}</p>
+                            <p>{{user.bio}}</p>
+                        </div>
+                        
+                        {% if app.user.id != user.id %}
+                            <div class="pull-right buttons-following">
+                                <button class="btn btn-sm btn-success btn-follow
+                                        {% if app.user|following(user) == true %}
+                                            hidden
+                                        {% endif %}
+                                        "
+                                        data-followed="{{user.id}}">                                       
+                                    <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                                    Seguir
+                                </button>
+                                  
+                                <button class="btn btn-sm btn-default btn-unfollow
+                                        {% if app.user|following(user) == false %}
+                                            hidden
+                                        {% endif %}
+                                        " 
+                                        data-followed="{{user.id}}">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                                    Dejar de seguir
+                                </button>                                    
+                            </div>
+                        {% endif %}
+                        
+                        <div class="clearfix"></div>
+                        <hr/>
+                        
+                    </div>               
+                {% endfor %}
+            </div> 
+            
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+            <div class="clearfix"></div>    
+    </div>
+    </div>
+{% endblock %}

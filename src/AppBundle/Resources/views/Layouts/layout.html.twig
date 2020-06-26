@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %} seed.com {% endblock %}      
+        </title>
+
+        {% block stylesheets %}
+            <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('assets/css/bootstrap.cosmo.min.css') }}" type="text/css" rel="stylesheet" />
+            <link href="{{ asset('assets/css/styles.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+
+        {% block javascripts %}
+            <script type="text/javascript">
+                var URL = "{{app.request.getSchemeAndHttpHost() }}/curso-social-network/web/app_dev.php";
+            </script>
+            <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+            <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery-ias.min.js') }}"></script>
+            <script src="{{ asset('assets/js/custom/common.js') }}"></script>
+        {% endblock %}
+    </head>
+    <body>
+        <header>           
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Navegación</span>
+                            <span clas="icon-bar"></span>
+                            <span clas="icon-bar"></span>
+                            <span clas="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{path("app_homepage")}}">
+                            <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+                            &nbsp;
+                            Seed
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            {% if app.user == null %}
+                                <li>
+                                    <a href="{{path("login")}}">
+                                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                        &nbsp;
+                                        Entrar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{path("register")}}">
+                                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                        &nbsp;
+                                        Registro
+                                    </a>
+                                </li>
+                            {% else %}                                
+                                <li>
+                                    <a href="{{path("app_homepage")}}">
+                                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                                        &nbsp;
+                                        Inicio
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{path("user_list")}}">
+                                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                        &nbsp;
+                                        Red Semilla
+                                    </a>
+                                </li>
+                                <li>
+                                    <form action="{{ path('user_search') }}" class="navbar-form navbar-left">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Busca tu Seed (Gente)" name="search" />
+                                        </div>
+                                        <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>                                       
+                                        </button>
+                                    </form>
+                                </li>
+                            {% endif %}
+                        </ul> 
+
+                        {% if app.user != null %}
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="{{path("private_message_index")}}">
+                                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                        &nbsp;
+                                        Mensajes Privados
+                                        <span class="label label-success label-notifications-msg"></span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{path("notifications_page")}}">
+                                        <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                                        &nbsp;
+                                        Notificaciones
+                                        <span class="label label-success label-notifications"></span>
+                                    </a>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">     
+
+                                        <div class="avatar">
+                                            {% if app.user.image == null %}
+                                                <img src="{{ asset('assets/images/default.png')}}" />
+                                            {% else %}
+                                                <img src="{{ asset('uploads/users/'~app.user.image)}}" />
+                                            {% endif %}
+                                        </div>
+
+                                        {{app.user.name}} {{app.user.surname}}
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="">
+                                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;
+                                                Mi Perfil
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{path("user_edit")}}">
+                                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp;
+                                                Mis Datos
+                                            </a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a href="{{path("logout")}}">
+                                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> &nbsp;
+                                                Salir
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> &nbsp;
+                                                Ayuda
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>              
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+        <section id="content">
+            <div class="container">
+                <div class="col-lg-11">
+                    {% for message in app.session.flashbag().get('status')%}
+                        <div class="alert alert-success">{{message}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="clear-fix"></div>
+            {% block content %}
+                Content default
+            {% endblock %}
+        </section>
+        <footer class="col-lg-12">
+            <hr/>
+            <div class="container">
+                <p class="text-muted">
+                    Seed NETWORK &nbsp/&nbsp Red Semilla &nbsp - 
+                    &nbsp Copyright ® 2020 &nbsp - &nbsp Franco Vitale Matus. </p>
+            </div>
+        </footer>
+    </body>
+
+</html>

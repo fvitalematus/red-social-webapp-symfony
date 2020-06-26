@@ -1,0 +1,103 @@
+{% extends "AppBundle:Layouts:layout.html.twig" %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{ asset('assets/js/custom/home.js') }}"></script>
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        <div id="timeline" class="col-lg-10 box-default">
+            <h1 class="box-header">Me Gustas de {{user.nick}}</h1>
+
+            <div class="count">
+                <span class="label label-primary">
+                    Total de Me Gustas: {{pagination.getTotalItemCount }}
+                </span>
+            </div>
+                <hr/>
+
+            <div class="box-content">
+                {% for like in pagination %}
+                    {% set publication = like.publication %}
+                    <div class="col-lg-12 publication-item">
+                        <div class="avatar">
+                            {% if publication.user.image == null %}
+                                <img src="{{ asset('assets/images/default.png')}}" />
+                            {% else %}
+                                <img src="{{ asset('uploads/users/'~publication.user.image)}}" />
+                            {% endif %}
+                        </div>
+
+                        <div class="publication-item-content">
+                            <p><a class="pub-name-link" href="{{ path('user_profile', {'nickname': publication.user.nick}) }}">
+                                    {{publication.user.name}} {{publication.user.surname}}
+                                </a>
+                                -
+                                {{publication.user.nick}}
+                                -
+                                <span class="pub-date">
+                                    {{publication.createdAt|long_time}}
+                                </span>
+                            </p>
+
+                            <p>{{publication.text}}</p>
+
+                            {% if(publication.user.id is defined) and (publication.user.id == app.user.id) %}
+                                <span data-id="{{publication.id}}" class="btn-delete-pub glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            {% endif %}
+
+                            {% if(publication.image is defined) and (publication.image != null) %}
+                                <a href="{{ asset('uploads/publications/archivos/'~publication.image)}}"
+                                   class="btn-doc glyphicon glyphicon-save" aria-hidden="true" target="_blank">
+                                </a>
+                            {% endif %}
+
+                            {% if(publication.image is defined) and (publication.image != null) %}
+                                <span class="btn-img glyphicon glyphicon-picture" aria-hidden="true"></span>
+                                <div class="clearfix"></div>
+
+                                <div class="pub-image">
+                                    <img src="{{ asset('uploads/publications/archivos/'~publication.image)}}" />
+                                </div>
+                            {% endif %}
+
+                            <div class="pull-right like">
+                                <span data-id="{{publication.id}}"
+                                      class="
+                                      {% if app.user|liked(publication) == true %}
+                                          hidden
+                                      {% endif %}
+                                      btn-like glyphicon glyphicon-heart-empty"
+                                      aria-hidden="true" 
+                                      data-toggle="tooltip"
+                                      data-placement="bottom"
+                                      title="Me Gusta">
+                                </span>
+
+                                <span data-id="{{publication.id}}"
+                                      class="
+                                      {% if app.user|liked(publication) == false %}
+                                          hidden
+                                      {% endif %}
+                                      btn-unlike active glyphicon glyphicon-heart-empty"
+                                      aria-hidden="true" 
+                                      data-toggle="tooltip"
+                                      data-placement="bottom"
+                                      title="Ya no me Gusta">
+                                </span>      
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr/>                                                
+                    </div>
+                {% endfor %}
+
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}                                
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>        
+    </div>
+{% endblock %}

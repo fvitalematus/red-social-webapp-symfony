@@ -1,0 +1,27 @@
+app_user:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix: /
+
+app_publication:
+    resource: "@AppBundle/Resources/config/routing/publication.yml"
+    prefix: /
+    
+app_following:
+    resource: "@AppBundle/Resources/config/routing/following.yml"
+    prefix: /
+    
+app_like:
+    resource: "@AppBundle/Resources/config/routing/like.yml"
+    prefix: /
+    
+app_notification:
+    resource: "@AppBundle/Resources/config/routing/notification.yml"
+    prefix: /
+    
+app_private_message:
+    resource: "@AppBundle/Resources/config/routing/private_message.yml"
+    prefix: /
+    
+app_homepage:
+    path: /
+    defaults: { _controller: AppBundle:User:login }

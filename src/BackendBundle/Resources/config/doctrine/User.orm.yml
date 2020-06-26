@@ -1,0 +1,83 @@
+BackendBundle\Entity\User:
+    type: entity
+    table: users
+    repositoryClass: BackendBundle\Repository\UserRepository
+    uniqueConstraints:
+        users_uniques_fields:
+            columns:
+                - email
+                - nick
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        role:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+                default: 'NULL'
+        email:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+        name:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+        surname:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+        password:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+        nick:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+                default: 'NULL'
+        bio:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+        active:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: false
+                default: 'NULL'
+        image:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: 'NULL'
+    lifecycleCallbacks: {  }

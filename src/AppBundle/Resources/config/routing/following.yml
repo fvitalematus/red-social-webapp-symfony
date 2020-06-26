@@ -1,0 +1,17 @@
+following_follow:
+    path: /follow
+    defaults: { _controller: AppBundle:Following:follow }
+    methods: [POST]
+    
+following_unfollow:
+    path: /unfollow
+    defaults: { _controller: AppBundle:Following:unfollow }
+    methods: [POST]
+    
+following_users:
+    path: /following/{nickname}
+    defaults: { _controller: AppBundle:Following:following, nickname:null }
+    
+followed_users:
+    path: /followed/{nickname}
+    defaults: { _controller: AppBundle:Following:followed, nickname:null }
