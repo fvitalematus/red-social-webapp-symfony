@@ -1,70 +1,19 @@
 Symfony Standard Edition
 ========================
+Este proyecto consiste en desarrollar tus propias aplicaciones web a medida, utilizando el Framework Symfony, modificar otras que ya estén programadas y además crear redes sociales de alta complejidad y webs con interactividad completa entre usuarios. 
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
-
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
-
-What's inside?
---------------
-
-The Symfony Standard Edition is configured with the following defaults:
-
-  * An AppBundle you can use to start coding;
-
-  * Twig as the only configured template engine;
-
-  * Doctrine ORM/DBAL;
-
-  * Swiftmailer;
-
-  * Annotations enabled for everything.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.1/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.1/doctrine.html
-[8]:  https://symfony.com/doc/3.1/templating.html
-[9]:  https://symfony.com/doc/3.1/security.html
-[10]: https://symfony.com/doc/3.1/email.html
-[11]: https://symfony.com/doc/3.1/logging.html
-[12]: https://symfony.com/doc/3.1/assetic/asset_management.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
 # red-social-webapp
+
+     El desarrollo de esta aplicación comienza por el diseño y creación de la base de datos, creación de bundles, modelos, controladores, rutas(routing), plantillas, vistas y formularios, interacción con la base de datos con Doctrine, CRUDs, sistema de seguimiento, maquetación de la interface de la web, control de acceso, y mucho más para dar paso a las siguientes funcionalidades:
+
+-> Registrarnos e identificarnos en la plataforma.
+-> Modificar nuestros datos.
+-> Subir una imagen de perfil.
+-> Buscar gente mediante un buscador.
+-> Seguir y dejar de seguir a cualquier usuario (follow y unfollow).
+-> Hacer publicaciones con documentos e imagenes.
+-> Ver las publicaciones de la gente que seguimos en el timeline.
+-> Marcar publicaciones como favoritas e indicar que te gustan.
+-> Ver mi perfil de usuario y el del resto de personas.
+-> Recibir y enviar mensajes privados (MD).
+-> Ver las notificaciones de nuestro perfil.
