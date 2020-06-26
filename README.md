@@ -1,4 +1,4 @@
-Symfony Standard Edition
+Proyecto "Desarrollar una Red Social" con el Backend: PHP 7, MySQL y Symfony | Frontend: HTML5, CSS3, Bootstrap 4, jQuery y AJAX.
 ========================
 Este proyecto consiste en desarrollar tus propias aplicaciones web a medida, utilizando el Framework Symfony, modificar otras que ya estén programadas y además crear redes sociales de alta complejidad y webs con interactividad completa entre usuarios. 
 
