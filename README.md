@@ -26,3 +26,7 @@ El desarrollo de esta aplicación comienza por el diseño y creación de la base
 ![Gente](https://user-images.githubusercontent.com/66401629/85909826-c5ae0300-b7e9-11ea-818f-1dc6a346b1a7.jpg)
 # Mensajería Privada:
 ![Mensajeria](https://user-images.githubusercontent.com/66401629/85909942-4e2ca380-b7ea-11ea-8141-29410a409cb6.jpg)
+# Diagrama de la base de datos:
+![Red_Social](https://user-images.githubusercontent.com/66401629/89973588-b1ee1d00-dc2e-11ea-9b7d-6284b70c2ea5.png)
+
+
