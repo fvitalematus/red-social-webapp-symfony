@@ -1,8 +1,8 @@
-Proyecto "Desarrollar una Red Social" con el Backend: PHP 7, MySQL y Symfony | Frontend: HTML5, CSS3, Bootstrap 4, jQuery y AJAX.
+"Red Social" con el Backend: PHP 7, MySQL y Symfony | Frontend: HTML5, CSS3, Bootstrap 4, jQuery y AJAX.
 ========================
 Este proyecto consiste en desarrollar tus propias aplicaciones web a medida, utilizando el Framework Symfony, modificar otras que ya estén programadas y además crear redes sociales de alta complejidad y webs con interactividad completa entre usuarios. 
 
-# red-social-webapp
+# Red Social Web App
 
 El desarrollo de esta aplicación comienza por el diseño y creación de la base de datos, creación de bundles, modelos, controladores, rutas(routing), plantillas, vistas y formularios, interacción con la base de datos con Doctrine, CRUDs, sistema de seguimiento, maquetación de la interface de la web, control de acceso, y mucho más para dar paso a las siguientes funcionalidades:     
 
